@@ -1,0 +1,100 @@
+<?xml version="1.0" standalone="yes"?>
+<music>
+  <song>
+    <id>1</id>
+    <title>Classical Masterpieces</title>
+    <artist>Ode To Joy</artist>
+    <album />
+    <filename>C:\mymusic\ode_to_joy.mp3</filename>
+    <length>20</length>
+    <genre>Classical</genre>
+  </song>
+  <song>
+    <id>2</id>
+    <title>Lets Fall in Love</title>
+    <artist>Frank Sinatra</artist>
+    <album>?</album>
+    <filename>C:\mymusic\Lets Fall in Love.mp3</filename>
+    <length />
+    <genre />
+  </song>
+  <song>
+    <id>3</id>
+    <title>Policy of Truth</title>
+    <artist>Depeche Mode</artist>
+    <album>Violator</album>
+    <filename>C:\mymusic\Depche Mode - Policy of truh.mp3</filename>
+    <length>04:55</length>
+    <genre>Alternative</genre>
+  </song>
+  <song>
+    <id>5</id>
+    <title>Bittersweet Symphony</title>
+    <artist>The Verve</artist>
+    <album>Urban Hymns</album>
+    <filename>C:\Users\fmccown\Music\01 Bittersweet Symphony.mp3</filename>
+    <length>05:59</length>
+    <genre>Alternative</genre>
+  </song>
+  <song>
+    <id>6</id>
+    <title>Din Din Wo (Little Child)</title>
+    <artist>Habib Koité and Bamada</artist>
+    <album>Muso Ko</album>
+    <filename>C:\Users\Public\Music\Sample Music\Din Din Wo (Little Child).wma</filename>
+    <length>04:46</length>
+    <genre>World</genre>
+  </song>
+  <song>
+    <id>7</id>
+    <title>millenium</title>
+    <artist>robbie williams</artist>
+    <album>Now: 1998 Disc 1</album>
+    <filename>C:\Users\fmccown\Music\millenium.mp3</filename>
+    <length>04:09</length>
+    <genre>Pop</genre>
+  </song>
+  <song>
+    <id>8</id>
+    <title>Sprawl II (Mountains Beyond Mountains)</title>
+    <artist>Arcade Fire</artist>
+    <album>The Suburbs</album>
+    <filename>C:\Users\fmccown\Music\iTunes\iTunes Media\Music\Arcade Fire\The Suburbs\15 Sprawl II (Mountains Beyond Mount.m4a</filename>
+    <genre>Indie rock</genre>
+  </song>
+  <song>
+    <id>9</id>
+    <title>Kansas City (Re-Recorded / Remastered)</title>
+    <artist>Various Artists</artist>
+    <album>The Greatest 1 Hit Wonders (Re-Recorded / Remastered Versions)</album>
+    <filename>C:\temp\Kansas-City.mp3</filename>
+    <length>2:21</length>
+    <genre>Pop</genre>
+  </song>
+  <playlist>
+    <name>Cool stuff</name>
+  </playlist>
+  <playlist>
+    <name>Quiet music</name>
+  </playlist>
+  <playlist_song>
+    <song_id>1</song_id>
+    <playlist_name>Cool stuff</playlist_name>
+    <position>1</position>
+  </playlist_song>
+  <playlist_song>
+    <song_id>3</song_id>
+    <playlist_name>Cool stuff</playlist_name>
+    <position>2</position>
+  </playlist_song>
+  <playlist_song>
+    <song_id>2</song_id>
+    <playlist_name>Cool stuff</playlist_name>
+    <position>3</position>
+  </playlist_song>
+  <playlist_song>
+    <song_id>2</song_id>
+    <playlist_name>Quiet music</playlist_name>
+    <position>1</position>
+  </playlist_song>
+</music>
