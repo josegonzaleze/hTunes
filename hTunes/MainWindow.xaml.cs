@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,15 @@ namespace hTunes
         public MainWindow()
         {
             InitializeComponent();
+
+            DataSet musicDataSet = new DataSet();
+
+            musicDataSet.ReadXmlSchema("music.xsd");
+
+            musicDataSet.ReadXml("music.xml");
+
+            dataGrid.ItemsSource = musicDataSet.Tables[0].DefaultView;
+
         }
     }
 }
