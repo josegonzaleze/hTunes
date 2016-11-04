@@ -5,14 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="378.125" Width="711.458">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="234*"/>
             <ColumnDefinition Width="25*"/>
             <ColumnDefinition Width="258*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGrid" Margin="49,56,48,31" Grid.ColumnSpan="3"/>
-
+        <DataGrid x:Name="dataGrid" Margin="146,56,10,31" Grid.ColumnSpan="3"/>
+        <Menu HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="703" Grid.ColumnSpan="3">
+            <MenuItem Height="45" Width="45" Header="Open"></MenuItem>
+            <MenuItem Height="45" Width="45" Header="Add"></MenuItem>
+            <Separator />
+            <MenuItem Height="45" Width="45" Header="About"></MenuItem>
+        </Menu>
     </Grid>
 </Window>
