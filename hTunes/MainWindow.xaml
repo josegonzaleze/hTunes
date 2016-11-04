@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
-        Title="hTunes" Height="390" Width="710" MinWidth="167">
+        Title="hTunes" Height="390" Width="710" MinWidth="167" MinHeight="167">
     <Grid>
         <DataGrid x:Name="dataGrid" Margin="156,56,10,40" Grid.ColumnSpan="3"/>
         <Menu HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="703" Grid.ColumnSpan="3">
