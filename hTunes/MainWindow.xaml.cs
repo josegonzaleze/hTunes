@@ -21,17 +21,25 @@ namespace hTunes
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MusicLib musicLib;
+        private MediaPlayer mediaPlayer;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            DataSet musicDataSet = new DataSet();
+            mediaPlayer = new MediaPlayer();
 
-            musicDataSet.ReadXmlSchema("music.xsd");
+            try
+            {
+                musicLib = new MusicLib();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("There was a problem: " + e.Message);
+            }
 
-            musicDataSet.ReadXml("music.xml");
-
-            dataGrid.ItemsSource = musicDataSet.Tables[0].DefaultView;
+            dataGrid.ItemsSource = musicLib.MusicDataSet.Tables[0].DefaultView;
 
         }
     }
