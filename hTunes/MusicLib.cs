@@ -11,6 +11,21 @@ namespace hTunes
     {
         private DataSet musicDataSet;
         public DataSet MusicDataSet { get { return musicDataSet; } }
+
+        //public List<string> Playlists { get { return playlists; } }
+        public IEnumerable<string> Playlists {
+            get
+            {
+                IEnumerable<string> playlists = new List<string>() { "All Music" }.AsEnumerable();
+                var names = from row in musicDataSet.Tables["playlist"].AsEnumerable()
+                          orderby row["name"]
+                          select row["name"].ToString();
+
+                playlists = playlists.Concat(names);
+                return playlists;
+            }
+        }
+        
         public EnumerableRowCollection<string> SongIds
         {
             get
@@ -52,6 +67,15 @@ namespace hTunes
                 Console.WriteLine();
             }
         }
+
+        public void AddPlaylist(string name)
+        {
+            DataTable table = musicDataSet.Tables["playlist"];
+            DataRow row = table.NewRow();
+            row["name"] = name;
+            table.Rows.Add(row);
+        }
+
         public int AddSong(Song s)
         {
             DataTable table = musicDataSet.Tables["song"];

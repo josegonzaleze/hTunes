@@ -40,7 +40,20 @@ namespace hTunes
             }
 
             dataGrid.ItemsSource = musicLib.MusicDataSet.Tables[0].DefaultView;
+            playlistBox.ItemsSource = musicLib.Playlists;
+        }
 
+        private void addPlaylist_Click(object sender, RoutedEventArgs e)
+        {
+            AddPlaylistDialogBox newPlaylistDialogBox = new AddPlaylistDialogBox();
+
+            newPlaylistDialogBox.ShowDialog();
+            if(newPlaylistDialogBox.DialogResult == true)
+            {
+                musicLib.AddPlaylist(newPlaylistDialogBox.PlaylistName);
+                newPlaylistDialogBox.Close();
+                playlistBox.Items.Refresh();
+            }            
         }
     }
 }
