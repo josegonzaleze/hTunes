@@ -5,19 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="378.125" Width="711.458">
+        Title="hTunes" Height="390" Width="710" MinWidth="167">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="234*"/>
-            <ColumnDefinition Width="25*"/>
-            <ColumnDefinition Width="258*"/>
-        </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGrid" Margin="146,56,10,31" Grid.ColumnSpan="3"/>
+        <DataGrid x:Name="dataGrid" Margin="156,56,10,40" Grid.ColumnSpan="3"/>
         <Menu HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="703" Grid.ColumnSpan="3">
             <MenuItem Height="45" Width="45" Header="Open"></MenuItem>
             <MenuItem Height="45" Width="45" Header="Add"></MenuItem>
-            <Separator />
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
             <MenuItem Height="45" Width="45" Header="About"></MenuItem>
+            <MenuItem>
+                <MenuItem.Header>
+                    <TextBox  Height="23" TextWrapping="Wrap" Text="TextBox" Width="106"/>
+                </MenuItem.Header>
+            </MenuItem>
+
         </Menu>
+        <ListBox HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"/>
+        <Button Content="Play" HorizontalAlignment="Left" Margin="156,328,0,10" Width="75"/>
+        <Button Content="Stop" HorizontalAlignment="Left" Margin="243,328,0,10" Width="75"/>
     </Grid>
 </Window>
