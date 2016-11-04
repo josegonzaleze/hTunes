@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -68,12 +69,41 @@ namespace hTunes
             }
         }
 
-        public void AddPlaylist(string name)
+        public bool AddPlaylist(string name)
         {
-            DataTable table = musicDataSet.Tables["playlist"];
-            DataRow row = table.NewRow();
-            row["name"] = name;
-            table.Rows.Add(row);
+            //ensure playlist name doesnt already exist
+            int count = musicDataSet.Tables["playlist"].Select("name = '" + name + "'" ).Length;
+            if (count == 0)
+            {
+                DataTable table = musicDataSet.Tables["playlist"];
+                DataRow row = table.NewRow();
+                row["name"] = name;
+                table.Rows.Add(row);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public DataTable GetPlaylist(string name)
+        {
+            if(name == "All Music")
+            {
+                return musicDataSet.Tables["song"];
+            }
+            else
+            {
+                var rows = from rowPlaylistSong in musicDataSet.Tables["playlist_song"].AsEnumerable()
+                           join rowSong in musicDataSet.Tables["song"].AsEnumerable() on rowPlaylistSong["song_id"] equals rowSong["id"]
+                           orderby rowPlaylistSong["position"]
+                           where rowPlaylistSong["playlist_name"].ToString() == name
+                           select rowSong;
+
+                return rows.CopyToDataTable<DataRow>();
+            }
+                        
         }
 
         public int AddSong(Song s)
@@ -175,8 +205,5 @@ namespace hTunes
             musicDataSet.WriteXml(filename);
         }
 
-    }
-
-
-
+    }    
 }

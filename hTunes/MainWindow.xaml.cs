@@ -39,7 +39,8 @@ namespace hTunes
                 MessageBox.Show("There was a problem: " + e.Message);
             }
 
-            dataGrid.ItemsSource = musicLib.MusicDataSet.Tables[0].DefaultView;
+            dataGrid.ItemsSource = musicLib.MusicDataSet.Tables["song"].DefaultView;
+            //dataGrid.ItemsSource = musicLib.GetPlaylist("Cool stuff").DefaultView;
             playlistBox.ItemsSource = musicLib.Playlists;
         }
 
@@ -50,10 +51,27 @@ namespace hTunes
             newPlaylistDialogBox.ShowDialog();
             if(newPlaylistDialogBox.DialogResult == true)
             {
-                musicLib.AddPlaylist(newPlaylistDialogBox.PlaylistName);
+                bool successfulAdd = musicLib.AddPlaylist(newPlaylistDialogBox.PlaylistName);
                 newPlaylistDialogBox.Close();
-                playlistBox.Items.Refresh();
+                if(successfulAdd)
+                {
+                    //playlistBox.Items.Refresh();
+                    playlistBox.ItemsSource = musicLib.Playlists;
+                }
+                else
+                {
+                    MessageBox.Show("A playlist with this name already exists.", "Uh Oh!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
             }            
+        }
+
+        private void playlistBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(e.AddedItems.Count > 0)
+            {
+                dataGrid.ItemsSource = musicLib.GetPlaylist(e.AddedItems[0] as string).DefaultView;
+            }
+            
         }
     }
 }

@@ -20,7 +20,7 @@
             </MenuItem>
 
         </Menu>
-        <ListBox Name="playlistBox" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"/>
+        <ListBox Name="playlistBox" SelectionMode="Single" SelectionChanged="playlistBox_SelectionChanged" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"/>
         <Button Content="Play" HorizontalAlignment="Left" Margin="156,328,0,10" Width="75"/>
         <Button Content="Stop" HorizontalAlignment="Left" Margin="243,328,0,10" Width="75"/>
     </Grid>
