@@ -6,8 +6,18 @@
         xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
         Title="hTunes" Height="390" Width="710" MinWidth="167" MinHeight="167">
+    <Window.Resources>
+        <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
+            <EventSetter Event="Drop" Handler="playlist_Drop" />
+            <Setter Property="AllowDrop" Value="true"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <DataGrid x:Name="dataGrid" Margin="156,56,10,40" Grid.ColumnSpan="3"/>
+        <DataGrid x:Name="dataGrid"
+                  MouseMove="dataGrid_MouseMove"
+                  PreviewMouseLeftButtonDown="dataGrid_PreviewMouseLeftButtonDown"
+                  Margin="156,56,10,40" Grid.ColumnSpan="3"/>
         <Menu HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="703" Grid.ColumnSpan="3">
             <MenuItem Height="45" Width="45" Header="Open"></MenuItem>
             <MenuItem Height="45" Width="45" Header="Add" Click="addPlaylist_Click"></MenuItem>
@@ -18,9 +28,9 @@
                     <TextBox  Height="23" TextWrapping="Wrap" Text="TextBox" Width="106"/>
                 </MenuItem.Header>
             </MenuItem>
-
         </Menu>
-        <ListBox Name="playlistBox" SelectionMode="Single" SelectionChanged="playlistBox_SelectionChanged" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"/>
+        <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
+                  SelectionChanged="playlistBox_SelectionChanged"></ListBox>
         <Button Content="Play" HorizontalAlignment="Left" Margin="156,328,0,10" Width="75"/>
         <Button Content="Stop" HorizontalAlignment="Left" Margin="243,328,0,10" Width="75"/>
     </Grid>

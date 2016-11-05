@@ -87,6 +87,16 @@ namespace hTunes
             }
         }
 
+        public void AddSongToPlaylist(string playlistName, int id)
+        {
+            DataTable table = musicDataSet.Tables["playlist_song"];
+            DataRow row = table.NewRow();
+            row["playlist_name"] = playlistName;
+            row["song_id"] = id;
+            row["position"] = table.AsEnumerable().Count() + 1;
+            table.Rows.Add(row);
+        }
+
         public DataTable GetPlaylist(string name)
         {
             if(name == "All Music")

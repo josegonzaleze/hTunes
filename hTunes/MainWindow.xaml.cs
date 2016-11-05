@@ -73,5 +73,41 @@ namespace hTunes
             }
             
         }
+
+        private void dataGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            Vector diff = startPoint - mousePos;
+
+            // Start the drag-drop if mouse has moved far enough
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                // Initiate dragging the text from the textbox
+                List<int> ids = new List<int>();
+                foreach (var item in dataGrid.SelectedItems)
+                {                    
+                    //ids.Add()
+                }
+                DragDrop.DoDragDrop(dataGrid, dataGrid.SelectedItems, DragDropEffects.Copy);
+            }
+
+        }
+        private Point startPoint;
+        private void dataGrid_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Store the mouse position
+            startPoint = e.GetPosition(null);
+        }
+
+        private void playlist_Drop(object sender, DragEventArgs e)
+        {
+            string playlistName = ((ListBoxItem)sender).Content.ToString();
+            if (e.Data.GetDataPresent(typeof(IList<DataRow>)))
+            {
+            }
+        }
     }
 }
