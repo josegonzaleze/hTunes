@@ -36,7 +36,17 @@
         <DataGrid x:Name="dataGrid"
                   MouseMove="dataGrid_MouseMove"
                   PreviewMouseLeftButtonDown="dataGrid_PreviewMouseLeftButtonDown"
-                  Margin="156,56,10,40" Grid.ColumnSpan="3"/>
+                  Margin="156,56,10,40" Grid.ColumnSpan="3"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Binding="{Binding title}" Header="Title"/>
+                <DataGridTextColumn Binding="{Binding artis}" Header="Artist"/>
+                <DataGridTextColumn Binding="{Binding album}" Header="Album"/>
+                <DataGridTextColumn Binding="{Binding genre}" Header="Genre"/>
+                
+            </DataGrid.Columns>
+        </DataGrid>
         <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
                   SelectionChanged="playlistBox_SelectionChanged"></ListBox>
         <Button Content="Play" HorizontalAlignment="Left" Margin="156,328,0,10" Width="75"/>
