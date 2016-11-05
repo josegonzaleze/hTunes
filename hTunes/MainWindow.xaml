@@ -13,25 +13,34 @@
         </Style>
     </Window.Resources>
 
-    <Grid>
+    <Grid>        
+        <DockPanel>
+            <ToolBarTray DockPanel.Dock="Top">
+                <ToolBar>
+                    <Button ToolTip="Open a song." >
+                        <Image Source="Images/open.png" Height="40" Width="40"/>
+                    </Button>
+                    <Button Click="addPlaylist_Click" ToolTip="Create new playlist." Height="40" Width="40">
+                        <Image Source="Images/AddSong.png" Height="30"/>
+                    </Button>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
+                    <Button ToolTip="About this application.">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Images/About.png" Height="40" Width="40"/>
+                        </StackPanel>
+                    </Button>
+                </ToolBar>
+            </ToolBarTray>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
         <DataGrid x:Name="dataGrid"
                   MouseMove="dataGrid_MouseMove"
                   PreviewMouseLeftButtonDown="dataGrid_PreviewMouseLeftButtonDown"
                   Margin="156,56,10,40" Grid.ColumnSpan="3"/>
-        <Menu HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="703" Grid.ColumnSpan="3">
-            <MenuItem Height="45" Width="45" Header="Open"></MenuItem>
-            <MenuItem Height="45" Width="45" Header="Add" Click="addPlaylist_Click"></MenuItem>
-            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
-            <MenuItem Height="45" Width="45" Header="About"></MenuItem>
-            <MenuItem>
-                <MenuItem.Header>
-                    <TextBox  Height="23" TextWrapping="Wrap" Text="TextBox" Width="106"/>
-                </MenuItem.Header>
-            </MenuItem>
-        </Menu>
         <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
                   SelectionChanged="playlistBox_SelectionChanged"></ListBox>
         <Button Content="Play" HorizontalAlignment="Left" Margin="156,328,0,10" Width="75"/>
         <Button Content="Stop" HorizontalAlignment="Left" Margin="243,328,0,10" Width="75"/>
+
     </Grid>
 </Window>
