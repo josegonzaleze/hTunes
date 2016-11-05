@@ -86,13 +86,16 @@ namespace hTunes
                 Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
             {
                 // Initiate dragging the text from the textbox
-                List<int> ids = new List<int>();
-                foreach (var item in dataGrid.SelectedItems)
+                if (dataGrid.SelectedItems.Count > 0)
                 {
-                    DataRowView row = (DataRowView)item;
-                    ids.Add(Int16.Parse(row["id"].ToString()));
+                    List<int> ids = new List<int>();
+                    foreach (var item in dataGrid.SelectedItems)
+                    {
+                        DataRowView row = (DataRowView)item;
+                        ids.Add(Int16.Parse(row["id"].ToString()));
+                    }
+                    DragDrop.DoDragDrop(dataGrid, ids, DragDropEffects.Copy);
                 }
-                DragDrop.DoDragDrop(dataGrid, ids, DragDropEffects.Copy);
             }
 
         }
