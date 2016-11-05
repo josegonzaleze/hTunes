@@ -31,7 +31,6 @@
                     </Button>
                 </ToolBar>
             </ToolBarTray>
-            <TextBox AcceptsReturn="True" />
         </DockPanel>
         <DataGrid x:Name="dataGrid"
                   MouseMove="dataGrid_MouseMove"
@@ -49,8 +48,8 @@
         </DataGrid>
         <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
                   SelectionChanged="playlistBox_SelectionChanged"></ListBox>
-        <Button Content="Play" HorizontalAlignment="Left" Margin="156,328,0,10" Width="75"/>
-        <Button Content="Stop" HorizontalAlignment="Left" Margin="243,328,0,10" Width="75"/>
+        <Button Content="Play" HorizontalAlignment="Left" Margin="156,324,0,14" Width="75" Click="Button_Click"/>
+        <Button Content="Stop" HorizontalAlignment="Left" Margin="236,324,0,14" Width="75"/>
 
     </Grid>
 </Window>

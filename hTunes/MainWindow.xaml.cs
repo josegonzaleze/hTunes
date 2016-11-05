@@ -118,5 +118,20 @@ namespace hTunes
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.Stop();
+            DataRowView selectedsongaddress = dataGrid.SelectedItem as DataRowView;
+            Song selectedsongobject = musicLib.GetSong(Convert.ToInt32(selectedsongaddress.Row.ItemArray[0]));
+
+            if (selectedsongobject != null)
+            {
+                mediaPlayer.Play();
+            }
+            {
+                MessageBox.Show("Please select a song before you hit play");
+            }
+        }
     }
 }
