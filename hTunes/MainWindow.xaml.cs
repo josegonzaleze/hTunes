@@ -88,10 +88,11 @@ namespace hTunes
                 // Initiate dragging the text from the textbox
                 List<int> ids = new List<int>();
                 foreach (var item in dataGrid.SelectedItems)
-                {                    
-                    //ids.Add()
+                {
+                    DataRowView row = (DataRowView)item;
+                    ids.Add(Int16.Parse(row["id"].ToString()));
                 }
-                DragDrop.DoDragDrop(dataGrid, dataGrid.SelectedItems, DragDropEffects.Copy);
+                DragDrop.DoDragDrop(dataGrid, ids, DragDropEffects.Copy);
             }
 
         }
@@ -105,8 +106,13 @@ namespace hTunes
         private void playlist_Drop(object sender, DragEventArgs e)
         {
             string playlistName = ((ListBoxItem)sender).Content.ToString();
-            if (e.Data.GetDataPresent(typeof(IList<DataRow>)))
+            if (e.Data.GetDataPresent(typeof(List<int>)))
             {
+                List<int> songIds = (List<int>)e.Data.GetData(typeof(List<int>));
+                foreach(var id in songIds)
+                {
+                    musicLib.AddSongToPlaylist(playlistName, id);
+                }
             }
         }
     }
