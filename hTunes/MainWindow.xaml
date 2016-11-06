@@ -21,16 +21,16 @@
                 <Setter.Value>
                     <ContextMenu>
                         <MenuItem Header="Rename" Command="Replace"></MenuItem>
-                        <Separator />                        
+                        <Separator />
                         <MenuItem Header="Delete Playlist" Command="Delete">
                             <MenuItem.Icon>
                                 <Image Source="Images/remove.png" />
                             </MenuItem.Icon>
-                        </MenuItem>                       
+                        </MenuItem>
                     </ContextMenu>
                 </Setter.Value>
             </Setter>
-        </Style>        
+        </Style>
         <ContextMenu x:Key="AllMusicContextMenu">
             <MenuItem Header="Play" Click="PlayButton_Click"></MenuItem>
             <Separator />
@@ -56,9 +56,13 @@
             <Setter Property="ContextMenu" Value="{StaticResource PlaylistContextMenu}"/>
         </Style>
     </Window.Resources>
-    <Grid>                
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="321*"/>
+            <RowDefinition Height="38*"/>
+        </Grid.RowDefinitions>
         <ToolBar Height="45" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            
+
             <Button ToolTip="Open a song." Click="Button_Click_1">
                 <Image Source="Images/open.png" Height="40" Width="40"/>
             </Button>
@@ -85,16 +89,16 @@
         <DataGrid x:Name="dataGrid"
                   MouseMove="dataGrid_MouseMove"
                   PreviewMouseLeftButtonDown="dataGrid_PreviewMouseLeftButtonDown"
-                  Margin="156,56,10,40" Grid.ColumnSpan="3"
+                  Margin="156,56,10,2"
                   AutoGenerateColumns="False"
                   ColumnWidth="*"
                   Style="{StaticResource AllMusicDataGrid}">
             <!--Limitates the DataGrid to only the rows we want-->
-            <DataGrid.Columns>                
+            <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding title}" Header="Title"/>
                 <DataGridTextColumn Binding="{Binding artist}" Header="Artist"/>
                 <DataGridTextColumn Binding="{Binding album}" Header="Album"/>
-                <DataGridTextColumn Binding="{Binding genre}" Header="Genre"/>                
+                <DataGridTextColumn Binding="{Binding genre}" Header="Genre"/>
             </DataGrid.Columns>
             <!--DataGrid Details functionallity This will display specific information about the
                 song once we click on it-->
@@ -123,10 +127,10 @@
 
         </DataGrid>
         <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
-                  SelectionChanged="playlistBox_SelectionChanged"></ListBox>
-        
-        <Button x:Name="playButton" Content="Play" Command="Play" HorizontalAlignment="Left" Margin="156,324,0,14" Width="75" Click="PlayButton_Click"/>
-        <Button x:Name="stopButton" Content="Stop" Command="Stop" HorizontalAlignment="Left" Margin="236,324,0,14" Width="75" Click="stopButton_Click" />
+                  SelectionChanged="playlistBox_SelectionChanged" Grid.RowSpan="2"></ListBox>
+
+        <Button x:Name="playButton" Content="Play" Command="Play" HorizontalAlignment="Left" Margin="156,9,0,8" Width="75" Click="PlayButton_Click" Grid.Row="1"/>
+        <Button x:Name="stopButton" Content="Stop" Command="Stop" HorizontalAlignment="Left" Margin="236,9,0,8" Width="75" Click="stopButton_Click" Grid.Row="1" />
 
     </Grid>
 </Window>
