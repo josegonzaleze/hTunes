@@ -71,6 +71,15 @@
     <length>2:21</length>
     <genre>Pop</genre>
   </song>
+  <song>
+    <id>10</id>
+    <title>Beyond</title>
+    <artist>Daft Punk</artist>
+    <album>Random Access Memories</album>
+    <filename>C:\Users\Cameron\Music\Daft Punk  -  Random Access Memories\Daft Punk - Beyond.mp3</filename>
+    <length>4:50</length>
+    <genre>Pop</genre>
+  </song>
   <playlist>
     <name>Cool stuff</name>
   </playlist>
@@ -89,12 +98,12 @@
   </playlist_song>
   <playlist_song>
     <song_id>2</song_id>
-    <playlist_name>Cool stuff</playlist_name>
-    <position>3</position>
-  </playlist_song>
-  <playlist_song>
-    <song_id>2</song_id>
     <playlist_name>Quiet music</playlist_name>
     <position>1</position>
+  </playlist_song>
+  <playlist_song>
+    <song_id>10</song_id>
+    <playlist_name>Quiet music</playlist_name>
+    <position>5</position>
   </playlist_song>
 </music>

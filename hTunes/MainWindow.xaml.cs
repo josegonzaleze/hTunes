@@ -55,7 +55,8 @@ namespace hTunes
                 newPlaylistDialogBox.Close();
                 if(successfulAdd)
                 {
-                    //playlistBox.Items.Refresh();
+                    musicLib.Save();
+
                     playlistBox.ItemsSource = musicLib.Playlists;
                 }
                 else
@@ -129,6 +130,7 @@ namespace hTunes
                 {
                     musicLib.AddSongToPlaylist(playlistName, id);
                 }
+                musicLib.Save();
             }
         }
 
@@ -175,6 +177,7 @@ namespace hTunes
             // Add the selected file to the music library
             Song s = GetSongDetails(sondata);
             musicLib.AddSong(s);
+            musicLib.Save();
             DataView temp = dataGrid.ItemsSource as DataView;
             temp.Sort = "id";
             int songID = temp.Find(s.Id);
@@ -225,6 +228,7 @@ namespace hTunes
         {
             musicLib.DeletePlaylist(playlistBox.SelectedItem.ToString());
             playlistBox.ItemsSource = musicLib.Playlists;
+            musicLib.Save();
         }
 
         private void renameCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -244,6 +248,7 @@ namespace hTunes
                 if (successfulAdd)
                 {
                     playlistBox.ItemsSource = musicLib.Playlists;
+                    musicLib.Save();
                 }
                 else
                 {
@@ -260,6 +265,7 @@ namespace hTunes
             string playlist = row["playlist_name"].ToString();
             musicLib.RemoveSongFromPlaylist(pos, id, playlist);
             dataGrid.ItemsSource = musicLib.GetPlaylist(playlist).DefaultView;
+            musicLib.Save();
         }
 
         private void RemoveSong_Click(object sender, RoutedEventArgs e)
@@ -267,12 +273,18 @@ namespace hTunes
             DataRowView row = (DataRowView)dataGrid.SelectedItem;
             int id = Int16.Parse(row["id"].ToString());
             musicLib.DeleteSong(id);
+            musicLib.Save();
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow aboutWindow = new AboutWindow();
             aboutWindow.ShowDialog();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            musicLib.Save();
         }
     }
 }

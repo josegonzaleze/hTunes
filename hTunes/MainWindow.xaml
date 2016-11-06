@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
-        Title="hTunes" Height="390" Width="710" MinWidth="167" MinHeight="167">
+        Title="hTunes" Height="390" Width="710" MinWidth="167" MinHeight="167"
+        Closing="Window_Closing">
     <Window.CommandBindings>
         <CommandBinding Command="Delete"  Executed="deleteCommand_Executed" CanExecute="deleteCommand_CanExecute"/>
         <CommandBinding Command="Replace"  Executed="renameCommand_Executed" CanExecute="renameCommand_CanExecute"/>
