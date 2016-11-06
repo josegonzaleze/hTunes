@@ -13,7 +13,49 @@
         <CommandBinding Command="Stop"      Executed="stopCommand_Executed"     CanExecute="stopCommand_CanExecute"/>
         <CommandBinding Command="Play"      Executed="playCommand_Executed"     CanExecute="playCommand_CanExecute"/>
     </Window.CommandBindings>
+    
+    
     <Window.Resources>
+        
+<!--Control Templay for Play and Stop Button-->
+        <!-- Default button configuration  "CODE FROM PAST HOMEWORK"-->
+        <ControlTemplate x:Key="MyButtonTemplate" TargetType="Button">
+            <Border Name="Border" BorderThickness="2" CornerRadius="10"
+                BorderBrush="White" Background="Black">
+                <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"                                 
+                              TextBlock.FontWeight="Bold"  
+                              TextBlock.Foreground="White"
+                              Content="{TemplateBinding Content}" />
+            </Border>
+
+            <!-- When Mouse is over -->
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Border" Property="Background"
+                        Value="Gray" />
+                    <Setter TargetName="Border" Property="BorderBrush"
+                        Value="Black"/>
+                </Trigger>
+
+                <!-- When button is clicked -->
+
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter TargetName="Border" Property="Background"
+                        Value="Black" />
+                    <Setter TargetName="Border" Property="BorderBrush"
+                        Value="Black"/>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter TargetName="Border" Property="Background"
+                        Value="gray" />
+                    <Setter TargetName="Border" Property="BorderBrush"
+                        Value="gray"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
         <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
             <EventSetter Event="Drop" Handler="playlist_Drop" />
             <Setter Property="AllowDrop" Value="true"/>
@@ -129,8 +171,10 @@
         <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
                   SelectionChanged="playlistBox_SelectionChanged" Grid.RowSpan="2"></ListBox>
 
-        <Button x:Name="playButton" Content="Play" Command="Play" HorizontalAlignment="Left" Margin="156,9,0,8" Width="75" Click="PlayButton_Click" Grid.Row="1"/>
-        <Button x:Name="stopButton" Content="Stop" Command="Stop" HorizontalAlignment="Left" Margin="236,9,0,8" Width="75" Click="stopButton_Click" Grid.Row="1" />
+        <Button x:Name="playButton" Content="Play" Command="Play" HorizontalAlignment="Left" Margin="156,9,0,8" Width="75" 
+                Click="PlayButton_Click" Grid.Row="1" Template="{StaticResource MyButtonTemplate}"/>
+        <Button x:Name="stopButton" Content="Stop" Command="Stop" HorizontalAlignment="Left" Margin="236,9,0,8" Width="75" 
+                Click="stopButton_Click" Grid.Row="1" Template="{StaticResource MyButtonTemplate}"/>
 
     </Grid>
 </Window>
