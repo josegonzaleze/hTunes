@@ -203,5 +203,16 @@ namespace hTunes
 
             return s;
         }
+
+        private void deleteCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = (playlistBox.SelectedItem.ToString() != "All Music");
+        }
+
+        private void deleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            musicLib.DeletePlaylist(playlistBox.SelectedItem.ToString());
+            playlistBox.ItemsSource = musicLib.Playlists;
+        }
     }
 }

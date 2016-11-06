@@ -87,6 +87,29 @@ namespace hTunes
             }
         }
 
+        public bool DeletePlaylist(string playlist)
+        {
+            // Search the primary key for this playlist and delete it from the playlist table
+            DataTable table = musicDataSet.Tables["playlist"];
+            DataRow row = table.Rows.Find(playlist);
+            if (row == null)
+                return false;
+
+            table.Rows.Remove(row);
+
+            // Remove from playlist_song every occurance of this playlist
+            List<DataRow> rows = new List<DataRow>();
+            table = musicDataSet.Tables["playlist_song"];
+            foreach (DataRow r in table.Rows)
+                if ((string)r["playlist_name"] == playlist)
+                    rows.Add(r);
+
+            foreach (DataRow r in rows)
+                r.Delete();
+
+            return true;
+        }
+
         public void AddSongToPlaylist(string playlistName, int id)
         {
             DataTable table = musicDataSet.Tables["playlist_song"];

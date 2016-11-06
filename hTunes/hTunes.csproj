@@ -113,7 +113,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\remove.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\About.png" />
     <Resource Include="Images\AddSong.png" />
