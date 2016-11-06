@@ -128,8 +128,11 @@ namespace hTunes
 
             if (selectedsongobject != null)
             {
+                
+                mediaPlayer.Open(new Uri(selectedsongobject.Filename));
                 mediaPlayer.Play();
             }
+            else
             {
                 MessageBox.Show("Please select a song before you hit play");
             }
@@ -141,7 +144,7 @@ namespace hTunes
             // Configure open file dialog box
             Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.FileName = "";
-            openFileDialog.DefaultExt = "*.wma;*.wav;*mp3";
+            openFileDialog.DefaultExt = "*mp3;*.m4a;*.wma;*.wav";
             openFileDialog.Filter = "Media files|*.mp3;*.m4a;*.wma;*.wav|MP3 (*.mp3)|*.mp3|M4A (*.m4a)|*.m4a|Windows Media Audio (*.wma)|*.wma|Wave files (*.wav)|*.wav|All files|*.*";
 
             // Show open file dialog box
@@ -160,6 +163,10 @@ namespace hTunes
             // Add the selected file to the music library
             Song s = GetSongDetails(sondata);
             musicLib.AddSong(s);
+            DataView temp = dataGrid.ItemsSource as DataView;
+            temp.Sort = "id";
+            int songID = temp.Find(s.Id);
+            dataGrid.SelectedIndex = songID;
         }
 
         //This is used in previous projects!!!
