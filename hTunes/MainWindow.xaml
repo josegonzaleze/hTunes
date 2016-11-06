@@ -31,7 +31,7 @@
         <ContextMenu x:Key="AllMusicContextMenu">
             <MenuItem Header="Play" Click="PlayButton_Click"></MenuItem>
             <Separator />
-            <MenuItem Header="Remove">
+            <MenuItem Header="Remove" Click="RemoveSong_Click">
                 <MenuItem.Icon>
                     <Image Source="Images/remove.png" />
                 </MenuItem.Icon>
@@ -40,7 +40,7 @@
         <ContextMenu x:Key="PlaylistContextMenu">
             <MenuItem Header="Play" Click="PlayButton_Click"></MenuItem>
             <Separator />
-            <MenuItem Header="Remove from playlist">
+            <MenuItem Header="Remove from playlist" Click="RemoveFromPlaylist_Click">
                 <MenuItem.Icon>
                     <Image Source="Images/remove.png" />
                 </MenuItem.Icon>

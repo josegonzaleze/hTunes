@@ -184,13 +184,47 @@ namespace hTunes
             }
             else
             {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("title", typeof(string));
+                dt.Columns.Add("artist", typeof(string));
+                dt.Columns.Add("album", typeof(string));
+                dt.Columns.Add("filename", typeof(string));
+                dt.Columns.Add("length", typeof(string));
+                dt.Columns.Add("genre", typeof(string));
+                dt.Columns.Add("id", typeof(string));
+                dt.Columns.Add("position", typeof(string));
+                dt.Columns.Add("playlist_name", typeof(string));
+
                 var rows = from rowPlaylistSong in musicDataSet.Tables["playlist_song"].AsEnumerable()
                            join rowSong in musicDataSet.Tables["song"].AsEnumerable() on rowPlaylistSong["song_id"] equals rowSong["id"]
                            orderby rowPlaylistSong["position"]
                            where rowPlaylistSong["playlist_name"].ToString() == name
-                           select rowSong;
-
-                return rows.CopyToDataTable<DataRow>();
+                           select new { 
+                               title = rowSong["title"], 
+                               artist=rowSong["artist"],
+                               album=rowSong["album"],
+                               filename=rowSong["filename"],
+                               length=rowSong["length"],
+                               genre=rowSong["genre"],
+                               id=rowSong["id"],
+                               position = rowPlaylistSong["position"],
+                               playlist_name = rowPlaylistSong["playlist_name"]
+                            };
+                foreach (var row in rows)
+                {
+                    DataRow dtRow = dt.NewRow();
+                    dtRow["title"] = row.title;
+                    dtRow["artist"] = row.artist;
+                    dtRow["album"] = row.album;
+                    dtRow["filename"] = row.filename;
+                    dtRow["length"] = row.length;
+                    dtRow["genre"] = row.genre;
+                    dtRow["id"] = row.id;
+                    dtRow["position"] = row.position;
+                    dtRow["playlist_name"] = row.playlist_name;
+                    dt.Rows.Add(dtRow);
+                }
+                return dt;
             }
                         
         }

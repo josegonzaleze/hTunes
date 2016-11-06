@@ -41,7 +41,6 @@ namespace hTunes
             }
 
             dataGrid.ItemsSource = musicLib.MusicDataSet.Tables["song"].DefaultView;
-            //dataGrid.ItemsSource = musicLib.GetPlaylist("Cool stuff").DefaultView;
             playlistBox.ItemsSource = musicLib.Playlists;
         }
 
@@ -251,6 +250,23 @@ namespace hTunes
                     MessageBox.Show("A playlist with this name already exists.", "Uh Oh!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }            
+        }
+
+        private void RemoveFromPlaylist_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView row = (DataRowView)dataGrid.SelectedItem;
+            int id = Int16.Parse(row["id"].ToString());
+            int pos = Int16.Parse(row["position"].ToString());
+            string playlist = row["playlist_name"].ToString();
+            musicLib.RemoveSongFromPlaylist(pos, id, playlist);
+            dataGrid.ItemsSource = musicLib.GetPlaylist(playlist).DefaultView;
+        }
+
+        private void RemoveSong_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView row = (DataRowView)dataGrid.SelectedItem;
+            int id = Int16.Parse(row["id"].ToString());
+            musicLib.DeleteSong(id);
         }
     }
 }
