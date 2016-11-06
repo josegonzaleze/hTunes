@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -110,6 +111,34 @@ namespace hTunes
             return true;
         }
 
+        public bool RenamePlaylist(string oldPlaylistName, string newPlaylistName)
+        {
+            Console.WriteLine("RenamePlaylist: " + oldPlaylistName + " to " + newPlaylistName);
+
+            // Update playlist name in playlist and playlist_song tables
+
+            DataTable table = musicDataSet.Tables["playlist"];
+            DataRow row = table.Rows.Find(oldPlaylistName);
+            if (row == null || PlaylistExists(newPlaylistName))
+                return false;
+
+            row["name"] = newPlaylistName;
+
+            table = musicDataSet.Tables["playlist_song"];
+            foreach (DataRow r in table.Rows)
+                if ((string)r["playlist_name"] == oldPlaylistName)
+                    r["playlist_name"] = newPlaylistName;
+
+            return true;
+        }
+
+        public bool PlaylistExists(string playlist)
+        {
+            DataTable table = musicDataSet.Tables["playlist"];
+            DataRow row = table.Rows.Find(playlist);
+            return row != null;
+        }
+
         public void AddSongToPlaylist(string playlistName, int id)
         {
             DataTable table = musicDataSet.Tables["playlist_song"];
@@ -118,6 +147,33 @@ namespace hTunes
             row["song_id"] = id;
             row["position"] = table.AsEnumerable().Count() + 1;
             table.Rows.Add(row);
+        }
+
+        public void RemoveSongFromPlaylist(int position, int songId, string playlist)
+        {
+            Console.WriteLine("RemoveSongFromPlaylist: id=" + songId + ", pos=" + position +
+                ", playlist=" + playlist);
+
+            // Search the primary key for this playlist and delete it from the playlist table
+            DataTable table = musicDataSet.Tables["playlist_song"];
+            ArrayList primaryKeys = new ArrayList();
+
+            // Order of keys must match column order
+            primaryKeys.Add(songId);
+            primaryKeys.Add(playlist);
+            primaryKeys.Add(position);
+            table.Rows.Remove(table.Rows.Find(primaryKeys.ToArray()));
+
+            // Decrement position by 1 for each song in this playlist that is positioned after
+            // this one
+            table = musicDataSet.Tables["playlist_song"];
+            foreach (DataRow r in table.Rows)
+            {
+                int pos = Convert.ToInt32(r["position"]);
+                if ((string)r["playlist_name"] == playlist && pos > position)
+                    r["position"] = pos - 1;
+            }
+
         }
 
         public DataTable GetPlaylist(string name)

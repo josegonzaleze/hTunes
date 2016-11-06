@@ -47,7 +47,7 @@ namespace hTunes
 
         private void addPlaylist_Click(object sender, RoutedEventArgs e)
         {
-            AddPlaylistDialogBox newPlaylistDialogBox = new AddPlaylistDialogBox();
+            AddPlaylistDialogBox newPlaylistDialogBox = new AddPlaylistDialogBox(PlaylistDialogType.Create);
 
             newPlaylistDialogBox.ShowDialog();
             if(newPlaylistDialogBox.DialogResult == true)
@@ -70,7 +70,20 @@ namespace hTunes
         {
             if(e.AddedItems.Count > 0)
             {
-                dataGrid.ItemsSource = musicLib.GetPlaylist(e.AddedItems[0] as string).DefaultView;
+                string playlist = e.AddedItems[0] as string;
+                dataGrid.ItemsSource = musicLib.GetPlaylist(playlist).DefaultView;
+
+                //for different context menus
+                Style style;
+                if(playlist == "All Music")
+                {
+                    style = this.FindResource("AllMusicDataGrid") as Style;                    
+                }
+                else
+                {
+                    style = this.FindResource("PlaylistDataGrid") as Style;
+                }
+                dataGrid.Style = style;
             }
             
         }
@@ -120,7 +133,7 @@ namespace hTunes
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
             mediaPlayer.Stop();
             DataRowView selectedsongaddress = dataGrid.SelectedItem as DataRowView;
@@ -213,6 +226,31 @@ namespace hTunes
         {
             musicLib.DeletePlaylist(playlistBox.SelectedItem.ToString());
             playlistBox.ItemsSource = musicLib.Playlists;
+        }
+
+        private void renameCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = (playlistBox.SelectedItem.ToString() != "All Music");
+        }
+
+        private void renameCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            AddPlaylistDialogBox newPlaylistDialogBox = new AddPlaylistDialogBox(PlaylistDialogType.Create);
+
+            newPlaylistDialogBox.ShowDialog();
+            if (newPlaylistDialogBox.DialogResult == true)
+            {
+                bool successfulAdd = musicLib.RenamePlaylist(playlistBox.SelectedItem.ToString(), newPlaylistDialogBox.PlaylistName);
+                newPlaylistDialogBox.Close();
+                if (successfulAdd)
+                {
+                    playlistBox.ItemsSource = musicLib.Playlists;
+                }
+                else
+                {
+                    MessageBox.Show("A playlist with this name already exists.", "Uh Oh!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }            
         }
     }
 }

@@ -8,6 +8,7 @@
         Title="hTunes" Height="390" Width="710" MinWidth="167" MinHeight="167">
     <Window.CommandBindings>
         <CommandBinding Command="Delete"  Executed="deleteCommand_Executed" CanExecute="deleteCommand_CanExecute"/>
+        <CommandBinding Command="Replace"  Executed="renameCommand_Executed" CanExecute="renameCommand_CanExecute"/>
     </Window.CommandBindings>
     <Window.Resources>
         <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
@@ -16,14 +17,40 @@
             <Setter Property="ContextMenu">
                 <Setter.Value>
                     <ContextMenu>
+                        <MenuItem Header="Rename" Command="Replace"></MenuItem>
+                        <Separator />                        
                         <MenuItem Header="Delete Playlist" Command="Delete">
                             <MenuItem.Icon>
                                 <Image Source="Images/remove.png" />
                             </MenuItem.Icon>
-                        </MenuItem>                        
+                        </MenuItem>                       
                     </ContextMenu>
                 </Setter.Value>
             </Setter>
+        </Style>        
+        <ContextMenu x:Key="AllMusicContextMenu">
+            <MenuItem Header="Play" Click="PlayButton_Click"></MenuItem>
+            <Separator />
+            <MenuItem Header="Remove">
+                <MenuItem.Icon>
+                    <Image Source="Images/remove.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <ContextMenu x:Key="PlaylistContextMenu">
+            <MenuItem Header="Play" Click="PlayButton_Click"></MenuItem>
+            <Separator />
+            <MenuItem Header="Remove from playlist">
+                <MenuItem.Icon>
+                    <Image Source="Images/remove.png" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <Style x:Key="AllMusicDataGrid" TargetType="DataGrid">
+            <Setter Property="ContextMenu" Value="{StaticResource AllMusicContextMenu}"/>
+        </Style>
+        <Style x:Key="PlaylistDataGrid" TargetType="DataGrid">
+            <Setter Property="ContextMenu" Value="{StaticResource PlaylistContextMenu}"/>
         </Style>
     </Window.Resources>
 
@@ -51,7 +78,8 @@
                   PreviewMouseLeftButtonDown="dataGrid_PreviewMouseLeftButtonDown"
                   Margin="156,56,10,40" Grid.ColumnSpan="3"
                   AutoGenerateColumns="False"
-                  ColumnWidth="*">
+                  ColumnWidth="*"
+                  Style="{StaticResource AllMusicDataGrid}">
             <!--Limitates the DataGrid to only the rows we want-->
             <DataGrid.Columns>                
                 <DataGridTextColumn Binding="{Binding title}" Header="Title"/>
@@ -87,7 +115,7 @@
         </DataGrid>
         <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
                   SelectionChanged="playlistBox_SelectionChanged"></ListBox>
-        <Button Content="Play" HorizontalAlignment="Left" Margin="156,324,0,14" Width="75" Click="Button_Click"/>
+        <Button Content="Play" HorizontalAlignment="Left" Margin="156,324,0,14" Width="75" Click="PlayButton_Click"/>
         <Button Content="Stop" HorizontalAlignment="Left" Margin="236,324,0,14" Width="75"/>
 
     </Grid>

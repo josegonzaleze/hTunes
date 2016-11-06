@@ -1,7 +1,7 @@
-﻿<Window x:Class="hTunes.AddPlaylistDialogBox"
+﻿<Window Name="window" x:Class="hTunes.AddPlaylistDialogBox"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="New Playlist" Height="133" Width="225"
+        Title="" Height="133" Width="225"
         ResizeMode="NoResize">
     <Window.CommandBindings>
         <CommandBinding Command="New" Executed="CreatePlaylist" CanExecute="CreatePlaylist_CanExecute"/>
@@ -10,7 +10,7 @@
     <Grid FocusManager.FocusedElement="{Binding ElementName=playlistNameTextBox}">
         <Label Content="Name: " HorizontalAlignment="Left" Margin="19,25,0,0" VerticalAlignment="Top"/>
         <TextBox Name="playlistNameTextBox" MaxLength="18" HorizontalAlignment="Left" Height="23" Margin="71,28,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Create" IsDefault="True" Command="New" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Name="submitButton" Content="" IsDefault="True" Command="New" HorizontalAlignment="Left" Margin="19,66,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Cancel" IsCancel="True" HorizontalAlignment="Left" Margin="116,66,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

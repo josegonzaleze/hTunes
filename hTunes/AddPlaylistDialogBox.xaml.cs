@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace hTunes
 {
+    public enum PlaylistDialogType { Create, Rename};
     /// <summary>
     /// Interaction logic for AddPlaylistDialogBox.xaml
     /// </summary>
@@ -21,9 +22,19 @@ namespace hTunes
     {
         public String PlaylistName { get { return playlistNameTextBox.Text; } }
 
-        public AddPlaylistDialogBox()
+        public AddPlaylistDialogBox(PlaylistDialogType dt)
         {
             InitializeComponent();
+            if(dt == PlaylistDialogType.Create)
+            {
+                window.Title = "New Playlist";
+                submitButton.Content = "Create";
+            }
+            else
+            {
+                window.Title = "Rename Playlist";
+                submitButton.Content = "Rename";
+            }
         }
 
         private void CreatePlaylist_CanExecute(object sender, CanExecuteRoutedEventArgs e)
