@@ -31,6 +31,7 @@ namespace hTunes
         public MainWindow()
         {
             InitializeComponent();
+            stopButton.IsEnabled = false;
 
             mediaPlayer = new MediaPlayer();
 
@@ -140,20 +141,8 @@ namespace hTunes
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            mediaPlayer.Stop();
-            DataRowView selectedsongaddress = dataGrid.SelectedItem as DataRowView;
-            Song selectedsongobject = musicLib.GetSong(Convert.ToInt32(selectedsongaddress.Row.ItemArray[0]));
-
-            if (selectedsongobject != null)
-            {
-                
-                mediaPlayer.Open(new Uri(selectedsongobject.Filename));
-                mediaPlayer.Play();
-            }
-            else
-            {
-                MessageBox.Show("Please select a song before you hit play");
-            }
+            PlayButton();
+            stopButton.IsEnabled = true;
         }
 
         //This is used in previous projects!!!
@@ -325,6 +314,50 @@ namespace hTunes
                 {
                     dv.RowFilter = String.Format("Title LIKE '%{0}%' OR Artist LIKE '%{0}%' OR Album LIKE '%{0}%' OR Genre LIKE '%{0}%'", filter);
                 }
+            }
+        }
+
+        private void stopCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            mediaPlayer.Stop();
+            stopButton.IsEnabled = false;
+        }
+
+        private void stopCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = IsEnabled;
+        }
+
+        private void stopButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaPlayer.Stop();
+        }
+
+        private void playCommand_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            PlayButton();
+        }
+
+        private void playCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = dataGrid.SelectedItem != null;    
+        }
+
+        public void PlayButton()
+        {
+            mediaPlayer.Stop();
+            DataRowView selectedsongaddress = dataGrid.SelectedItem as DataRowView;
+            Song selectedsongobject = musicLib.GetSong(Convert.ToInt32(selectedsongaddress.Row.ItemArray[0]));
+
+            if (selectedsongobject != null)
+            {
+
+                mediaPlayer.Open(new Uri(selectedsongobject.Filename));
+                mediaPlayer.Play();
+            }
+            else
+            {
+                MessageBox.Show("Please select a song before you hit play");
             }
         }
     }

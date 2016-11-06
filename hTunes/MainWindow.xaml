@@ -8,8 +8,10 @@
         Title="hTunes" Height="390" Width="710" MinWidth="167" MinHeight="167"
         Closing="Window_Closing">
     <Window.CommandBindings>
-        <CommandBinding Command="Delete"  Executed="deleteCommand_Executed" CanExecute="deleteCommand_CanExecute"/>
-        <CommandBinding Command="Replace"  Executed="renameCommand_Executed" CanExecute="renameCommand_CanExecute"/>
+        <CommandBinding Command="Delete"    Executed="deleteCommand_Executed"   CanExecute="deleteCommand_CanExecute"/>
+        <CommandBinding Command="Replace"   Executed="renameCommand_Executed"   CanExecute="renameCommand_CanExecute"/>
+        <CommandBinding Command="Stop"      Executed="stopCommand_Executed"     CanExecute="stopCommand_CanExecute"/>
+        <CommandBinding Command="Play"      Executed="playCommand_Executed"     CanExecute="playCommand_CanExecute"/>
     </Window.CommandBindings>
     <Window.Resources>
         <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
@@ -122,8 +124,9 @@
         </DataGrid>
         <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
                   SelectionChanged="playlistBox_SelectionChanged"></ListBox>
-        <Button Content="Play" HorizontalAlignment="Left" Margin="156,324,0,14" Width="75" Click="PlayButton_Click"/>
-        <Button Content="Stop" HorizontalAlignment="Left" Margin="236,324,0,14" Width="75"/>
+        
+        <Button x:Name="playButton" Content="Play" Command="Play" HorizontalAlignment="Left" Margin="156,324,0,14" Width="75" Click="PlayButton_Click"/>
+        <Button x:Name="stopButton" Content="Stop" Command="Stop" HorizontalAlignment="Left" Margin="236,324,0,14" Width="75" Click="stopButton_Click" />
 
     </Grid>
 </Window>

@@ -80,6 +80,15 @@
     <length>4:50</length>
     <genre>Pop</genre>
   </song>
+  <song>
+    <id>12</id>
+    <title>Nadie Como Tú</title>
+    <artist>Wisin y Yandel</artist>
+    <album>Los Vaqueros</album>
+    <filename>C:\Users\Otmaro\Music\Nadie como tu.mp3</filename>
+    <length>3:43</length>
+    <genre>Latin</genre>
+  </song>
   <playlist>
     <name>Cool stuff</name>
   </playlist>
