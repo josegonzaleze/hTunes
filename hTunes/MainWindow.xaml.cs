@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -132,6 +133,68 @@ namespace hTunes
             {
                 MessageBox.Show("Please select a song before you hit play");
             }
+        }
+
+        //This is used in previous projects!!!
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            // Configure open file dialog box
+            Microsoft.Win32.OpenFileDialog openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.FileName = "";
+            openFileDialog.DefaultExt = "*.wma;*.wav;*mp3";
+            openFileDialog.Filter = "Media files|*.mp3;*.m4a;*.wma;*.wav|MP3 (*.mp3)|*.mp3|M4A (*.m4a)|*.m4a|Windows Media Audio (*.wma)|*.wma|Wave files (*.wav)|*.wav|All files|*.*";
+
+            // Show open file dialog box
+            bool? result = openFileDialog.ShowDialog();
+
+            // Load the selected song
+            if (result == true)
+            {
+                AddSong(openFileDialog.FileName);
+            }
+        }
+
+        //This is used in previous projects!!!
+        public void AddSong(string sondata)
+        {
+            // Add the selected file to the music library
+            Song s = GetSongDetails(sondata);
+            musicLib.AddSong(s);
+        }
+
+        //This is used in previous projects!!!
+        private Song GetSongDetails(string filename)
+        {
+            Song s = null;
+
+            try
+            {
+                // PM> Install-Package taglib
+                // http://stackoverflow.com/questions/1750464/how-to-read-and-write-id3-tags-to-an-mp3-in-c
+                TagLib.File file = TagLib.File.Create(filename);
+
+                s = new Song
+                {
+                    Title = file.Tag.Title,
+                    Artist = file.Tag.AlbumArtists.Length > 0 ? file.Tag.AlbumArtists[0] : "",
+                    Album = file.Tag.Album,
+                    Genre = file.Tag.Genres.Length > 0 ? file.Tag.Genres[0] : "",
+                    Length = file.Properties.Duration.Minutes + ":" + file.Properties.Duration.Seconds,
+                    Filename = filename
+                };
+
+                return s;
+            }
+            catch (TagLib.UnsupportedFormatException)
+            {
+                MessageBox.Show("You did not select a valid song file.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            return s;
         }
     }
 }

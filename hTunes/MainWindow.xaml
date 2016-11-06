@@ -17,7 +17,7 @@
         <DockPanel>
             <ToolBarTray DockPanel.Dock="Top">
                 <ToolBar>
-                    <Button ToolTip="Open a song." >
+                    <Button ToolTip="Open a song." Click="Button_Click_1">
                         <Image Source="Images/open.png" Height="40" Width="40"/>
                     </Button>
                     <Button Click="addPlaylist_Click" ToolTip="Create new playlist." Height="40" Width="40">
