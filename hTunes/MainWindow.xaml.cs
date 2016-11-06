@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,8 @@ namespace hTunes
     {
         private MusicLib musicLib;
         private MediaPlayer mediaPlayer;
+
+        private string currentPlaylistName;
 
         public MainWindow()
         {
@@ -72,6 +75,7 @@ namespace hTunes
             {
                 string playlist = e.AddedItems[0] as string;
                 dataGrid.ItemsSource = musicLib.GetPlaylist(playlist).DefaultView;
+                currentPlaylistName = playlist;
 
                 //for different context menus
                 Style style;
@@ -285,6 +289,43 @@ namespace hTunes
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             musicLib.Save();
+        }
+
+        private void searchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (searchBox.Text == "Search...")
+            {
+                searchBox.Text = "";
+                searchBox.FontStyle = FontStyles.Normal;
+                searchBox.Foreground = new SolidColorBrush(Colors.Black);
+            }
+        }
+
+        private void searchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if(searchBox.Text == "")
+            {
+                searchBox.Text = "Search...";
+                searchBox.FontStyle = FontStyles.Italic;
+                searchBox.Foreground = new SolidColorBrush(Colors.Gray);
+            }
+        }
+
+        private void searchBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox t = (TextBox)sender;
+            string filter = t.Text;
+
+            if (dataGrid != null)
+            {
+                DataView dv = dataGrid.ItemsSource as DataView;
+                if (filter == "" || filter == "Search...")
+                    dv.RowFilter = null;
+                else
+                {
+                    dv.RowFilter = String.Format("Title LIKE '%{0}%' OR Artist LIKE '%{0}%' OR Album LIKE '%{0}%' OR Genre LIKE '%{0}%'", filter);
+                }
+            }
         }
     }
 }
