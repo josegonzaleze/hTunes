@@ -65,7 +65,7 @@
                         <Image Source="Images/AddSong.png" Height="30"/>
                     </Button>
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
-                    <Button ToolTip="About this application.">
+                    <Button ToolTip="About this application." Click="AboutButton_Click">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="Images/About.png" Height="40" Width="40"/>
                         </StackPanel>

@@ -1,0 +1,11 @@
+﻿<Window x:Class="hTunes.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About" Height="224" Width="300" ResizeMode="NoResize" Background="LightSeaGreen">
+    <Grid>
+        <Label Content="hTunes" HorizontalAlignment="Center" FontFamily="Copperplate Gothic" FontSize="50" VerticalAlignment="Top" Margin="0,10,0,0"/>
+        <Label Content="Version 0.0.1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0"/>
+        <Label Content="By Jose Gonzalez and Cameron LaFerney" HorizontalAlignment="Center" FontSize="14" FontFamily="Helvetica" VerticalAlignment="Top" Margin="0,120,0,0"/>
+        <Button Content="OK" IsCancel="True" IsDefault="True" HorizontalAlignment="Center" VerticalAlignment="Top" Width="76" Margin="0,160,0,0"/>
+    </Grid>
+</Window>

@@ -268,5 +268,11 @@ namespace hTunes
             int id = Int16.Parse(row["id"].ToString());
             musicLib.DeleteSong(id);
         }
+
+        private void AboutButton_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow aboutWindow = new AboutWindow();
+            aboutWindow.ShowDialog();
+        }
     }
 }
