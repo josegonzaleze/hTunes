@@ -19,6 +19,7 @@
     - Allow the user to enter a search string. As the string is being entered, the song list should be populated with any song 
       whose title, artist, album, or genre match any part of the search string.  An empty search string should yield all songs.  
 5-) What each teammate contributed.
+
     JOSE GONZALEZ
       - Limited the columns on the Data Grid to the ones requested.
       - Play and Stop Button functionality and look.
