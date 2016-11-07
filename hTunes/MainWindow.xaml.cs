@@ -90,11 +90,13 @@ namespace hTunes
                 Style style;
                 if(playlist == "All Music")
                 {
-                    style = this.FindResource("AllMusicDataGrid") as Style;                    
+                    style = this.FindResource("AllMusicDataGrid") as Style;
+                    dataGrid.IsReadOnly = false;
                 }
                 else
                 {
                     style = this.FindResource("PlaylistDataGrid") as Style;
+                    dataGrid.IsReadOnly = true;
                 }
                 dataGrid.Style = style;
             }

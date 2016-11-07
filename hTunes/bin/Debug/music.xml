@@ -80,6 +80,15 @@
     <length>4:50</length>
     <genre>Pop</genre>
   </song>
+  <song>
+    <id>11</id>
+    <title>Within</title>
+    <artist>Daft Punk</artist>
+    <album>Random Access Memories</album>
+    <filename>C:\Users\Cameron\Music\Daft Punk  -  Random Access Memories\Daft Punk - Within.mp3</filename>
+    <length>3:49</length>
+    <genre>Pop</genre>
+  </song>
   <playlist>
     <name>Cool stuff</name>
   </playlist>
