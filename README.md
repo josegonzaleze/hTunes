@@ -31,7 +31,7 @@
     CAMERON LAFERNEY
       - Structure to the from. DataGrid Playlistbox and toolbar.
       - Populate of playlist.
-      - Delete playlist functionality.
+      - Add/Delete playlist functionality.
       - Context menus.
       - About Windows.
       - Save Logic.
