@@ -219,9 +219,11 @@ namespace hTunes
 
         private void deleteCommand_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            musicLib.DeletePlaylist(playlistBox.SelectedItem.ToString());
-            playlistBox.ItemsSource = musicLib.Playlists;
-            musicLib.Save();
+           
+                musicLib.DeletePlaylist(playlistBox.SelectedItem.ToString());
+                playlistBox.ItemsSource = musicLib.Playlists;
+                musicLib.Save();
+                    
         }
 
         private void renameCommand_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -263,10 +265,16 @@ namespace hTunes
 
         private void RemoveSong_Click(object sender, RoutedEventArgs e)
         {
-            DataRowView row = (DataRowView)dataGrid.SelectedItem;
-            int id = Int16.Parse(row["id"].ToString());
-            musicLib.DeleteSong(id);
-            musicLib.Save();
+            //Code found at : 
+            //http://stackoverflow.com/questions/10777123/c-sharp-messagebox-dialog-result
+
+            if (MessageBox.Show("Are you sure you want to delete this song from the list?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
+            {
+                DataRowView row = (DataRowView)dataGrid.SelectedItem;
+                int id = Int16.Parse(row["id"].ToString());
+                musicLib.DeleteSong(id);
+                musicLib.Save();
+            }
         }
 
         private void AboutButton_Click(object sender, RoutedEventArgs e)

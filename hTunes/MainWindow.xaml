@@ -17,7 +17,7 @@
     
     <Window.Resources>
         
-<!--Control Templay for Play and Stop Button-->
+        <!--Control Templay for Play and Stop Button-->
         <!-- Default button configuration  "CODE FROM PAST HOMEWORK"-->
         <ControlTemplate x:Key="MyButtonTemplate" TargetType="Button">
             <Border Name="Border" BorderThickness="2" CornerRadius="10"
@@ -55,7 +55,8 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-
+        <!-- END Control Templay for Play and Stop Button-->
+        
         <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
             <EventSetter Event="Drop" Handler="playlist_Drop" />
             <Setter Property="AllowDrop" Value="true"/>
@@ -148,6 +149,7 @@
                 <DataTemplate>
                     <Border Background="LightGray">
                         <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding albumImage}"/>
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock TextBlock.Text="Title: "/>
