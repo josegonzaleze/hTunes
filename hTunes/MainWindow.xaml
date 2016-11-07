@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
-        Title="hTunes" Height="390" Width="710" MinWidth="167" MinHeight="167"
+        Title="hTunes" Height="390" Width="710" MinWidth="330" MinHeight="180"
         Closing="Window_Closing" Icon="App media player.png.ico">
     <Window.CommandBindings>
         <CommandBinding Command="Delete"    Executed="deleteCommand_Executed"   CanExecute="deleteCommand_CanExecute"/>
@@ -13,10 +13,10 @@
         <CommandBinding Command="Stop"      Executed="stopCommand_Executed"     CanExecute="stopCommand_CanExecute"/>
         <CommandBinding Command="Play"      Executed="playCommand_Executed"     CanExecute="playCommand_CanExecute"/>
     </Window.CommandBindings>
-    
-    
+
+
     <Window.Resources>
-        
+
         <!--Control Templay for Play and Stop Button-->
         <!-- Default button configuration  "CODE FROM PAST HOMEWORK"-->
         <ControlTemplate x:Key="MyButtonTemplate" TargetType="Button">
@@ -56,7 +56,7 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
         <!-- END Control Templay for Play and Stop Button-->
-        
+
         <Style x:Key="{x:Type ListBoxItem}" TargetType="ListBoxItem">
             <EventSetter Event="Drop" Handler="playlist_Drop" />
             <Setter Property="AllowDrop" Value="true"/>
@@ -110,7 +110,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="321*"/>
-            <RowDefinition Height="38*"/>
+            <RowDefinition Height="38"/>
         </Grid.RowDefinitions>
         <ToolBar Height="45" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 
@@ -178,14 +178,14 @@
             </DataGrid.RowDetailsTemplate>
 
         </DataGrid>
-        <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
-                  SelectionChanged="playlistBox_SelectionChanged" Grid.RowSpan="2"></ListBox>
+        <ListBox Name="playlistBox" SelectionMode="Single" Margin="10,56,0,10"
+                  SelectionChanged="playlistBox_SelectionChanged" Grid.RowSpan="2" HorizontalAlignment="Left" Width="131"/>
 
         <!--Play and Stop Buttons-->
-        <Button x:Name="playButton" Content="Play" Command="Play" HorizontalAlignment="Left" Margin="156,9,0,8" Width="75" 
-                Click="PlayButton_Click" Grid.Row="1" Template="{StaticResource MyButtonTemplate}"/>
-        <Button x:Name="stopButton" Content="Stop" Command="Stop" HorizontalAlignment="Left" Margin="236,9,0,8" Width="75" 
-                Click="stopButton_Click" Grid.Row="1" Template="{StaticResource MyButtonTemplate}"/>
+        <Button x:Name="playButton" Content="Play" Command="Play" HorizontalAlignment="Left" Margin="156,0,0,8" Width="75" 
+                Click="PlayButton_Click" Grid.Row="1" Template="{StaticResource MyButtonTemplate}" Height="21" VerticalAlignment="Bottom"/>
+        <Button x:Name="stopButton" Content="Stop" Command="Stop" HorizontalAlignment="Left" Margin="236,0,0,8" Width="75" 
+                Click="stopButton_Click" Grid.Row="1" Template="{StaticResource MyButtonTemplate}" Height="21" VerticalAlignment="Bottom"/>
 
     </Grid>
 </Window>
