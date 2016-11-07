@@ -2,15 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
+/*
+Application name	hTunes
+API key 08450c1548807ba37a988798aea2174e
+Shared secret b784ecf1c70bd88997e3afbe052eb7c5
+Registered to   OtmaroE
+
+*/
 namespace hTunes
 {
     public class MusicLib
     {
+        private string API_KEY = "08450c1548807ba37a988798aea2174e";
+
         private DataSet musicDataSet;
         public DataSet MusicDataSet { get { return musicDataSet; } }
 
@@ -326,6 +338,39 @@ namespace hTunes
             string filename = "music.xml";
             Console.WriteLine("Saving " + filename);
             musicDataSet.WriteXml(filename);
+        }
+        //CODE provided in class project description
+        public void GetSongImage(Song song)
+        {
+            String url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=" + API_KEY + "&" + "artist=" + WebUtility.UrlEncode(song.Artist) + "&track=" + WebUtility.UrlEncode(song.Title);
+            try
+            {
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                using (WebResponse response = request.GetResponse())
+                {
+                    Stream strm = response.GetResponseStream();
+                    using (XmlTextReader reader = new XmlTextReader(strm))
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.NodeType == XmlNodeType.Element)
+                            {
+                                Console.WriteLine("name = " + reader.Name);
+                                if (reader.Name == "image")
+                                {
+                                    if (reader.GetAttribute("size") == "medium")
+                                        Console.WriteLine("Image URL = " + reader.ReadString());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (WebException e)
+            {
+                // A 400 response is returned when the song is not in their library
+                Console.WriteLine("Error: " + e.Message);
+            }
         }
 
     }    

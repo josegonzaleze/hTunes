@@ -15,6 +15,9 @@ namespace hTunes
         public string Length { set; get; }
         public string Filename { set; get; }
 
+        public string AlbumImageUrl { set; get; }
+        public string AboutUrl { set; get; }    
+
         // Two songs are equal if all their properties are equal
         public override bool Equals(object obj)
         {
