@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:hTunes"
         mc:Ignorable="d"
         Title="hTunes" Height="390" Width="710" MinWidth="167" MinHeight="167"
-        Closing="Window_Closing">
+        Closing="Window_Closing" Icon="App media player.png.ico">
     <Window.CommandBindings>
         <CommandBinding Command="Delete"    Executed="deleteCommand_Executed"   CanExecute="deleteCommand_CanExecute"/>
         <CommandBinding Command="Replace"   Executed="renameCommand_Executed"   CanExecute="renameCommand_CanExecute"/>
@@ -181,6 +181,7 @@
         <ListBox Name="playlistBox" SelectionMode="Single" HorizontalAlignment="Left" Margin="10,56,0,10" Width="131"
                   SelectionChanged="playlistBox_SelectionChanged" Grid.RowSpan="2"></ListBox>
 
+        <!--Play and Stop Buttons-->
         <Button x:Name="playButton" Content="Play" Command="Play" HorizontalAlignment="Left" Margin="156,9,0,8" Width="75" 
                 Click="PlayButton_Click" Grid.Row="1" Template="{StaticResource MyButtonTemplate}"/>
         <Button x:Name="stopButton" Content="Stop" Command="Stop" HorizontalAlignment="Left" Margin="236,9,0,8" Width="75" 
