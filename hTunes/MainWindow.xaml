@@ -157,7 +157,7 @@
                 <DataTemplate>
                     <Border Background="LightGray">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding albumImage}"/>
+                            <Image Margin="0,0,10,0" Name="albumImage" Source="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=albumImage}"/>
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock TextBlock.Text="Title: "/>

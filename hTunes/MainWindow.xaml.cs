@@ -28,6 +28,14 @@ namespace hTunes
 
         private string currentPlaylistName;
 
+        public string albumImage {
+            get{
+                DataRowView row = (DataRowView)dataGrid.SelectedItem;
+                int id = Int16.Parse(row["id"].ToString());
+                return musicLib.GetSongImage(id);
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -355,7 +363,7 @@ namespace hTunes
         {
             mediaPlayer.Stop();
             DataRowView selectedsongaddress = dataGrid.SelectedItem as DataRowView;
-            Song selectedsongobject = musicLib.GetSong(Convert.ToInt32(selectedsongaddress.Row.ItemArray[0]));
+            Song selectedsongobject = musicLib.GetSong(Convert.ToInt32(selectedsongaddress.Row["id"]));
 
             if (selectedsongobject != null)
             {

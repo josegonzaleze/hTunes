@@ -340,9 +340,11 @@ namespace hTunes
             musicDataSet.WriteXml(filename);
         }
         //CODE provided in class project description
-        public void GetSongImage(Song song)
+        public string GetSongImage(int id)
         {
+            Song song = GetSong(id);
             String url = "http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=" + API_KEY + "&" + "artist=" + WebUtility.UrlEncode(song.Artist) + "&track=" + WebUtility.UrlEncode(song.Title);
+            string imageLocation = "";
             try
             {
                 HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
@@ -359,18 +361,18 @@ namespace hTunes
                                 if (reader.Name == "image")
                                 {
                                     if (reader.GetAttribute("size") == "medium")
-                                        Console.WriteLine("Image URL = " + reader.ReadString());
+                                        imageLocation = reader.ReadString();
                                 }
                             }
                         }
                     }
                 }
             }
-            catch (WebException e)
+            catch
             {
-                // A 400 response is returned when the song is not in their library
-                Console.WriteLine("Error: " + e.Message);
+                Console.WriteLine("Error retrieving image location.");
             }
+            return imageLocation;
         }
 
     }    
