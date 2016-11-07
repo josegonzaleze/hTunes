@@ -115,15 +115,15 @@
         <ToolBar Height="45" HorizontalAlignment="Stretch" VerticalAlignment="Top">
 
             <Button ToolTip="Open a song." Click="Button_Click_1">
-                <Image Source="Images/open.png" Height="40" Width="40"/>
+                <Image Source="Images/AddSong.png"/>
             </Button>
             <Button Click="addPlaylist_Click" ToolTip="Create new playlist." Height="40" Width="40">
-                <Image Source="Images/AddSong.png" Height="30"/>
+                <Image Source="Images/NewPlaylist.png"/>
             </Button>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"/>
             <Button ToolTip="About this application." Click="AboutButton_Click">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Images/About.png" Height="40" Width="40"/>
+                    <Image Source="Images/About.png"/>
                 </StackPanel>
             </Button>
             <TextBox 

@@ -124,12 +124,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\remove.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\About.png" />
     <Resource Include="Images\AddSong.png" />
-    <Resource Include="Images\Open.png" />
+    <Resource Include="Images\remove.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Play.png" />
@@ -139,6 +136,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App media player.png.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NewPlaylist.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
